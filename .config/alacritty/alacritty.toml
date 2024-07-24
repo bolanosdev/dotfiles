@@ -1,0 +1,12 @@
+[window.padding]
+x = 10
+y = 10
+
+[font]
+size = 12
+
+[font.normal]
+family = "FiraCode Nerd Font"
+
+[scrolling]
+history = 10_000
