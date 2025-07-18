@@ -1,5 +1,6 @@
 vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory ' })
 vim.keymap.set('n', '<leader>g', '', { desc = '[G]it' })
+vim.keymap.set('n', '<leader>t', '', { desc = '[T]est' })
 vim.keymap.set('n', '<leader>s', '', { desc = '[S][E]arch/[S][P]lit' })
 vim.keymap.set('n', '<leader>se', '', { desc = '[S][E]arch' })
 vim.keymap.set('n', '<leader>sp', '', { desc = '[S][P]lit' })
