@@ -24,8 +24,8 @@ return {
       adapters = {
         require("neotest-go"),
         require("neotest-jest")({
-          jestCommand = "npm test --", -- adjust if you use yarn or pnpm
-          jestConfigFile = "jest.config.ts",
+          jestCommand = "npm test --",
+          jestConfigFile = "jest.config.(js|ts)",
           env = { CI = true },
           cwd = function()
             return vim.fn.getcwd()
