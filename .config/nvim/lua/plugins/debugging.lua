@@ -8,14 +8,14 @@ return {
     },
     config = function()
       local dap, dapui = require("dap"), require("dapui")
+      dapui.setup()
 
-      require('mason-nvim-dap').setup {
-        automatic_installation = true,
-        handlers = {},
-        ensure_installed = {
-          'delve',
-        },
-      }
+      vim.keymap.set('n', '<F2>', function() dap.toggle_breakpoint() end)
+      vim.keymap.set('n', '<F5>', function() dap.continue() end)
+      vim.keymap.set('n', '<F10>', function() dap.step_over() end)
+      vim.keymap.set('n', '<F11>', function() dap.step_into() end)
+      vim.keymap.set('n', '<F12>', function() dap.step_out() end)
+
 
       dap.listeners.before.attach.dapui_config = function()
         dapui.open()
@@ -30,9 +30,16 @@ return {
         dapui.close()
       end
 
-      require('dapui').setup()
-      require('dap-go').setup({
-      })
+      require('mason-nvim-dap').setup {
+        automatic_installation = true,
+        handlers = {},
+        ensure_installed = {
+          'delve',
+        },
+      }
+
+      -- GO
+      require('dap-go').setup({})
 
       dap.adapters.go = function(callback, config)
         local handle
@@ -60,12 +67,6 @@ return {
           cwd = "${workspaceFolder}",
         },
       }
-
-      vim.keymap.set('n', '<F2>', dap.toggle_breakpoint)
-      vim.keymap.set('n', '<F5>', dap.continue)
-      vim.keymap.set('n', '<F10>', dap.step_over)
-      vim.keymap.set('n', '<F11>', dap.step_into)
-      vim.keymap.set('n', '<F12>', dap.step_out)
     end
   }
 }
