@@ -81,6 +81,16 @@ return {
           program = "${fileDirname}",
           cwd = "${workspaceFolder}",
         },
+        {
+          type = "go",
+          name = "Debug with arguments",
+          request = "launch",
+          program = "${file}",
+          args = function()
+            local input = vim.fn.input('Args (space separated): ')
+            return vim.fn.split(input, " ", true)
+          end,
+        }
       }
 
       dap.configurations.javascript = {
