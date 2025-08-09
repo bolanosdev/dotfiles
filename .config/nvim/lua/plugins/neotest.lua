@@ -25,7 +25,7 @@ return {
         require("neotest-go"),
         require("neotest-jest")({
           jestCommand = "npm test --",
-          jestConfigFile = "jest.config.(js|ts)",
+          jestConfigFile = "jest.config.(ts|js)",
           env = { CI = true },
           cwd = function()
             return vim.fn.getcwd()
@@ -35,23 +35,23 @@ return {
     })
 
 
-    vim.keymap.set("n", "<leader>tr", function()
+    vim.keymap.set("n", "<leader>ter", function()
       require("neotest").run.run()
     end, { desc = "[R]un nearest" })
 
-    vim.keymap.set("n", "<leader>td", function()
+    vim.keymap.set("n", "<leader>ted", function()
       require("neotest").run.run({ strategy = "dap" })
     end, { desc = "[D]ebug nearest" })
 
-    vim.keymap.set("n", "<leader>tf", function()
+    vim.keymap.set("n", "<leader>tef", function()
       require("neotest").run.run(vim.fn.expand("%"))
     end, { desc = "All tests in current [F]ile" })
 
-    vim.keymap.set("n", "<leader>ts", function()
+    vim.keymap.set("n", "<leader>tes", function()
       require("neotest").summary.toggle()
     end, { desc = "Toggle [S]ummary" })
 
-    vim.keymap.set("n", "<leader>to", function()
+    vim.keymap.set("n", "<leader>teo", function()
       require("neotest").output.open({ enter = true })
     end, { desc = "Show test [O]utput" })
   end
