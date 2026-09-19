@@ -35,6 +35,7 @@ AUR_PKGS=(
   k9s
   kubie
   minikube
+  zennotes-bin
 )
 
 BREW_PKGS=(

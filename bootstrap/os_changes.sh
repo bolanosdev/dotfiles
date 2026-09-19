@@ -23,6 +23,15 @@ setup_git_identity() {
   git config --global user.email "$GIT_EMAIL"
 }
 
+set_default_editor() {
+  log "Setting nvim as the default editor (git core.editor, \$EDITOR/\$VISUAL)"
+  git config --global core.editor "nvim"
+
+  fish_config_add_block "bootstrap: default editor" \
+'set --export EDITOR nvim
+set --export VISUAL nvim'
+}
+
 generate_ssh_key() {
   if [[ -f "$SSH_KEY" ]]; then
     log "SSH key already exists at $SSH_KEY"
@@ -116,6 +125,7 @@ enable_docker() {
 main() {
   make_dirs
   setup_git_identity
+  set_default_editor
   generate_ssh_key
   install_fish_aliases
   upload_ssh_key_github

@@ -1,0 +1,13 @@
+{
+  "toggles": {
+    "todo": {
+      "todoist": { "enable": false },
+      "zennotes": {
+        "enable": true,
+        "match": [{ "class": "zennotes" }],
+        "command": ["zennotes"],
+        "move": true
+      }
+    }
+  }
+}

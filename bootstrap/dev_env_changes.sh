@@ -3,7 +3,7 @@ set -euo pipefail
 
 # ============================================================
 # dev_env_changes.sh — dev environment config: clone dotfiles,
-# symlink nvim config. Safe to re-run any number of times.
+# symlink nvim/hypr config. Safe to re-run any number of times.
 # ============================================================
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
@@ -19,12 +19,13 @@ clone_dotfiles() {
   fi
 }
 
-link_nvim_config() {
-  local src="$SCRIPT_DIR/nvim"
-  local dest="$HOME/.config/nvim"
+link_config() {
+  local name="$1"
+  local src="$2"
+  local dest="$3"
 
-  if [[ ! -d "$src" ]]; then
-    warn "No nvim folder found in dotfiles repo ($src) — skipping nvim config symlink"
+  if [[ ! -e "$src" ]]; then
+    warn "No $name path found in dotfiles repo ($src) — skipping $name config symlink"
     return
   fi
 
@@ -42,14 +43,18 @@ link_nvim_config() {
     mv "$dest" "$backup"
   fi
 
-  mkdir -p "$HOME/.config"
+  mkdir -p "$(dirname "$dest")"
   log "Symlinking $dest -> $src"
   ln -s "$src" "$dest"
 }
 
 main() {
   clone_dotfiles
-  link_nvim_config
+  link_config "nvim" "$SCRIPT_DIR/nvim" "$HOME/.config/nvim"
+  # ~/.config/hypr is caelestia's own managed clone — never touch it directly.
+  # Overrides go through its two sanctioned override files instead.
+  link_config "hypr-vars" "$SCRIPT_DIR/hypr/hypr-vars.lua" "$HOME/.config/caelestia/hypr-vars.lua"
+  link_config "hypr cli.json" "$SCRIPT_DIR/hypr/cli.json" "$HOME/.config/caelestia/cli.json"
 
   log "dev_env_changes.sh done."
 }
