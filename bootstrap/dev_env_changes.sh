@@ -55,6 +55,7 @@ main() {
   # Overrides go through its two sanctioned override files instead.
   link_config "hypr-vars" "$SCRIPT_DIR/hypr/hypr-vars.lua" "$HOME/.config/caelestia/hypr-vars.lua"
   link_config "hypr cli.json" "$SCRIPT_DIR/hypr/cli.json" "$HOME/.config/caelestia/cli.json"
+  link_config "wallpapers" "$SCRIPT_DIR/wallpapers" "$HOME/Pictures/Wallpapers"
 
   log "dev_env_changes.sh done."
 }

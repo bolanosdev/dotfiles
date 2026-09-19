@@ -23,6 +23,10 @@ PACMAN_PKGS=(
   github-cli   # provides `gh`, used to upload your SSH key to GitHub
   glab
   lazygit
+  weechat
+  steam            # multilib repo
+  faugus-launcher  # cachyos repo — Windows games via UMU-Launcher
+  obs-studio       # extra repo
 )
 
 AUR_PKGS=(
@@ -44,6 +48,12 @@ BREW_PKGS=(
   go-task/tap/go-task
 )
 
+# Packages previously installed that are no longer wanted. Not touched by
+# install_software.sh — removed by uninstall_software.sh instead.
+REMOVE_PKGS=(
+  todoist-appimage   # replaced by zennotes-bin; SUPER+R now launches zennotes
+)
+
 # Things below still need a review pass with you:
 #   - cloudflare-cli -> could mean `cloudflared` (tunnel daemon, in AUR) or `wrangler`
 #                       (Workers CLI, installed via bun/npm). Not added — which one?
@@ -53,8 +63,9 @@ BREW_PKGS=(
 HYPRMOD_INSTALL_URL="https://raw.githubusercontent.com/BlueManCZ/hyprmod/main/install.sh"
 
 # ---- Folders ----
+# Note: ~/Pictures/Wallpapers is not created here — it's symlinked to
+# bootstrap/Wallpapers by dev_env_changes.sh instead.
 DIRS=(
-  "$HOME/Pictures/Wallpapers"
   "$HOME/Projects"
 )
 
