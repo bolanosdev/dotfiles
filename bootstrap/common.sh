@@ -11,6 +11,7 @@ warn() { echo -e "\n\033[1;33m[!]\033[0m $1"; }
 
 # ---- Package lists (edit these) ----
 PACMAN_PKGS=(
+  ant
   docker
   docker-compose
   go
@@ -19,6 +20,7 @@ PACMAN_PKGS=(
   fzf
   ffmpeg
   zig
+  zip
   dotnet-sdk
   github-cli   # provides `gh`, used to upload your SSH key to GitHub
   glab
@@ -26,6 +28,9 @@ PACMAN_PKGS=(
   weechat
   steam            # multilib repo
   faugus-launcher  # cachyos repo — Windows games via UMU-Launcher
+  lutris           # Windows game launchers (e.g. WoW Ascension) via Wine
+  wine             # multilib repo
+  winetricks
   obs-studio       # extra repo
 )
 
@@ -57,10 +62,9 @@ REMOVE_PKGS=(
 # Things below still need a review pass with you:
 #   - cloudflare-cli -> could mean `cloudflared` (tunnel daemon, in AUR) or `wrangler`
 #                       (Workers CLI, installed via bun/npm). Not added — which one?
-#   - herdr        -> not a package I recognize either (Laravel Herd? a typo for something
-#                     else?). Not added — tell me what this is.
 
 HYPRMOD_INSTALL_URL="https://raw.githubusercontent.com/BlueManCZ/hyprmod/main/install.sh"
+HERDR_INSTALL_URL="https://herdr.dev/install.sh"
 
 # ---- Folders ----
 # Note: ~/Pictures/Wallpapers is not created here — it's symlinked to

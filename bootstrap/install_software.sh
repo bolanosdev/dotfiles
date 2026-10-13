@@ -89,6 +89,26 @@ install_fnm() {
   curl -fsSL https://fnm.vercel.app/install | bash
 }
 
+install_sdkman() {
+  if [[ -d "$HOME/.sdkman" ]]; then
+    log "sdkman already installed"
+    return
+  fi
+  log "Installing sdkman"
+  curl -s "https://get.sdkman.io" | bash
+}
+
+install_java_sdk() {
+  if compgen -G "$HOME/.sdkman/candidates/java/25*" &>/dev/null; then
+    log "Java 25 already installed"
+    return
+  fi
+  log "Installing Java 25 via sdkman"
+  # shellcheck disable=SC1091
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+  sdk install java 25-tem
+}
+
 # brew/bun/fnm's own installers write bash/zsh rc lines automatically, but
 # none of them touch fish. This wires all three into fish so they're on
 # PATH in new interactive sessions.
@@ -110,6 +130,11 @@ end'
 'if type -q fnm
     fnm env --use-on-cd | source
 end'
+
+  fish_config_add_block "bootstrap: sdkman (java)" \
+'if test -d $HOME/.sdkman/candidates/java/current/bin
+    set --export PATH $HOME/.sdkman/candidates/java/current/bin $PATH
+end'
 }
 
 install_hyprmod() {
@@ -119,6 +144,15 @@ install_hyprmod() {
   fi
   log "Installing hyprmod"
   curl -LsSf "$HYPRMOD_INSTALL_URL" | sh
+}
+
+install_herdr() {
+  if command -v herdr &>/dev/null; then
+    log "herdr already installed"
+    return
+  fi
+  log "Installing herdr"
+  curl -fsSL "$HERDR_INSTALL_URL" | sh
 }
 
 install_claude_code() {
@@ -140,12 +174,15 @@ main() {
   install_brew_pkgs
   install_bun
   install_fnm
+  install_sdkman
+  install_java_sdk
   configure_fish_shell
   install_hyprmod
+  install_herdr
   install_claude_code
 
   log "install_software.sh done."
-  echo "Still need your input on: cloudflare-cli, herdr (see notes in common.sh)."
+  echo "Still need your input on: cloudflare-cli (see notes in common.sh)."
 }
 
 main "$@"

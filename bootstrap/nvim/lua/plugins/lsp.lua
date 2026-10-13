@@ -3,6 +3,7 @@ local servers = {
   pyright = {},
   ts_ls = {},
   lua_ls = {},
+  bashls = {},
 }
 
 return {
