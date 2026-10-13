@@ -74,7 +74,7 @@ DIRS=(
 )
 
 # ---- Dotfiles / dev env ----
-DOTFILES_REPO="https://github.com/bolanosdev/dotfiles.git"
+DOTFILES_REPO="https://gitlab.com/bolanosdev/dotfiles.git"
 DOTFILES_DIR="$HOME/Projects/dotfiles"
 
 # ---- git / ssh identity ----
