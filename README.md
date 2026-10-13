@@ -7,7 +7,8 @@ Everything is idempotent — safe to re-run any of these any number of times.
 
 1. **Run `install_software.sh`**
    Installs everything: pacman/AUR packages, Homebrew + its formulas, bun,
-   fnm, hyprmod, Claude Code, and wires brew/bun/fnm into your fish config.
+   fnm, sdkman + Java 25, hyprmod, herdr, Claude Code, and wires
+   brew/bun/fnm/java into your fish config.
    No interaction required.
 
    ```
@@ -60,4 +61,3 @@ something.
 
 - **cloudflare-cli** — `cloudflared` (tunnel daemon) or `wrangler` (Workers
   CLI)? Not added to any package list yet.
-- **herdr** — not a recognized package name. Not added yet.
